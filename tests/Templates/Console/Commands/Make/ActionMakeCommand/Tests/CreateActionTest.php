@@ -5,7 +5,7 @@ use Ddr\LaravelCommands\Tests\Models\User;
 
 use function Pest\Laravel\assertDatabaseHas;
 
-uses()->group('actions', 'create-action', );
+uses()->group('actions', 'create-action');
 
 it('should create a user', function (): void {
     $userData = User::factory()

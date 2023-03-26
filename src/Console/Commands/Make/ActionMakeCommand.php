@@ -6,6 +6,7 @@ use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Facades\{File, Validator};
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+
 use function str_pad;
 
 class ActionMakeCommand extends GeneratorCommand
