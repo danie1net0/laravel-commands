@@ -51,6 +51,11 @@
             "phpstan/extension-installer": true
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": "Ddr\\LaravelCommands\\Providers\\LaravelCommandsServiceProvider"
+        }
+    },
     "minimum-stability": "dev",
     "prefer-stable": true
 }
