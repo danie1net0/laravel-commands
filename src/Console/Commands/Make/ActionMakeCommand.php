@@ -260,7 +260,7 @@ class ActionMakeCommand extends GeneratorCommand
         $replace = [
             $actionNamespace,
             $modelNamespace,
-            $groups ? "'{$groups}', " : '',
+            $groups ? "'{$groups}'" : '',
             $modelInstance,
             $model,
             $action,
@@ -333,7 +333,7 @@ class ActionMakeCommand extends GeneratorCommand
         $replace = [
             $actionNamespace,
             $modelNamespace,
-            $groups ? "'{$groups}', " : '',
+            $groups ? "'{$groups}'" : '',
             $modelInstance,
             $updatedModelInstance,
             $model,
@@ -387,7 +387,7 @@ class ActionMakeCommand extends GeneratorCommand
         $replace = [
             $actionNamespace,
             $modelNamespace,
-            $groups ? "'{$groups}', " : '',
+            $groups ? "'{$groups}'" : '',
             $modelInstance,
             $model,
             $action,
