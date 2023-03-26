@@ -5,7 +5,7 @@ use Ddr\LaravelCommands\Tests\Models\User;
 
 use function Pest\Laravel\assertDatabaseHas;
 
-uses()->group('actions', 'update-action', );
+uses()->group('actions', 'update-action');
 
 it('should update a user', function (): void {
     /** @var User $user */
