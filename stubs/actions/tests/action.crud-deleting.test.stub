@@ -1,0 +1,21 @@
+<?php
+
+use {{ actionNamespace }};
+use {{ modelNamespace }};
+
+use function Pest\Laravel\assertDatabaseMissing;
+
+uses()->group('actions', {{ groups }});
+
+it('should delete a {{ modelInstance }}', function (): void {
+    /** @var {{ modelName }} ${{ modelInstance }} */
+    ${{ modelInstance }} = {{ modelName }}::factory()->create();
+
+    $isDeleted = (new {{ actionName }}())->execute(${{ modelInstance }});
+
+    expect($isDeleted)->toBeTrue();
+
+    assertDatabaseMissing({{ modelName }}::class, [
+        {{ databaseAttributes }}
+    ]);
+});

@@ -1,0 +1,23 @@
+<?php
+
+use {{ actionNamespace }};
+use {{ modelNamespace }};
+
+use function Pest\Laravel\assertDatabaseHas;
+
+uses()->group('actions', {{ groups }});
+
+it('should update a {{ modelInstance }}', function (): void {
+    /** @var {{ modelName }} ${{ modelInstance }} */
+    ${{ modelInstance }} = {{ modelName }}::factory()->create();
+
+    ${{ modelInstance }}Data = {{ modelName }}::factory()
+        ->make()
+        ->toArray();
+
+    ${{ updatedModelInstance }} = (new {{ actionName }}())->execute(${{ modelInstance }}, ${{ modelInstance }}Data);
+
+    assertDatabaseHas({{ modelName }}::class, [
+        {{ databaseAttributes }}
+    ]);
+});

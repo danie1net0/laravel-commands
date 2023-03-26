@@ -1,0 +1,9 @@
+<?php
+
+use {{ actionNamespace }};
+
+uses()->group('actions');
+
+it('', function (): void {
+    (new {{ actionName }}())->execute();
+});

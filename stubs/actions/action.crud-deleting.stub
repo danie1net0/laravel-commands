@@ -1,0 +1,13 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ modelNamespace }};
+
+class {{ class }}
+{
+    public function execute({{ model }} {{ instance }}): bool
+    {
+        return {{ instance }}->delete();
+    }
+}

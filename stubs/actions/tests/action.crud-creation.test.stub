@@ -1,0 +1,20 @@
+<?php
+
+use {{ actionNamespace }};
+use {{ modelNamespace }};
+
+use function Pest\Laravel\assertDatabaseHas;
+
+uses()->group('actions', {{ groups }});
+
+it('should create a {{ modelInstance }}', function (): void {
+    ${{ modelInstance }}Data = {{ modelName }}::factory()
+        ->make()
+        ->toArray();
+
+    ${{ modelInstance }} = (new {{ actionName }}())->execute(${{ modelInstance }}Data);
+
+    assertDatabaseHas({{ modelName }}::class, [
+        {{ databaseAttributes }}
+    ]);
+});

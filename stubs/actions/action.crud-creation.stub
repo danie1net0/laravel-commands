@@ -1,0 +1,13 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ modelNamespace }};
+
+class {{ class }}
+{
+    public function execute(array $params): {{ model }}
+    {
+        return {{ model }}::query()->create($params);
+    }
+}
