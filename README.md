@@ -1,7 +1,7 @@
 # Generator commands for Laravel applications
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ddr/laravel-commands.svg?style=flat-square)](https://packagist.org/packages/ddr/laravel-commands)
-[![Tests](https://img.shields.io/github/actions/workflow/status/ddr/laravel-commands/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/ddr/laravel-commands/actions/workflows/run-tests.yml)
+[![Tests](https://img.shields.io/github/actions/workflow/status/ddr/laravel-commands/run-tests.yml?branch=master&label=tests&style=flat-square)](https://github.com/ddr/laravel-commands/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/ddr/laravel-commands.svg?style=flat-square)](https://packagist.org/packages/ddr/laravel-commands)
 
 This is where your description should go. Try and limit it to a paragraph or two. Consider adding a small example.
@@ -41,7 +41,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## Contributing
 
-Please see [CONTRIBUTING](https://github.com/spatie/.github/blob/main/CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](https://github.com/spatie/.github/blob/master/CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
