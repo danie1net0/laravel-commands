@@ -13,7 +13,6 @@ beforeEach(function (): void {
     File::deleteDirectory(app()->basePath("tests/Feature/Actions"));
 
     Schema::shouldReceive('getColumnListing')
-        ->once()
         ->with('users')
         ->andReturn([
             'id',
