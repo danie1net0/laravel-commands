@@ -2,7 +2,7 @@
 
 use Ddr\LaravelCommands\Console\Commands\Make\ActionMakeCommand;
 use Ddr\LaravelCommands\Tests\Models\User;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\{File, Schema};
 
 uses()->group('commands');
 
@@ -11,6 +11,24 @@ beforeEach(function (): void {
 
     File::deleteDirectory(app_path("Actions"));
     File::deleteDirectory(app()->basePath("tests/Feature/Actions"));
+
+    Schema::shouldReceive('getColumnListing')
+        ->once()
+        ->with('users')
+        ->andReturn([
+            'id',
+            'name',
+            'cpf',
+            'email',
+            'cell_phone',
+            'password',
+            'is_active',
+            'status',
+            'confirmation_token',
+            'birth_date',
+            'created_at',
+            'updated_at',
+        ]);
 });
 
 it('should run the command successfully', function (): void {

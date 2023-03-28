@@ -2,12 +2,12 @@
 
 namespace Ddr\LaravelCommands\Console\Commands\Make;
 
+use Ddr\LaravelCommands\Actions\ModelAttributesAction;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Facades\{File, Validator};
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
-
-use function str_pad;
 
 class ActionMakeCommand extends GeneratorCommand
 {
@@ -25,6 +25,15 @@ class ActionMakeCommand extends GeneratorCommand
     protected $description = 'Create a new action';
 
     protected $type = 'Action';
+
+    private ModelAttributesAction $modelAttributesAction;
+
+    public function __construct(Filesystem $files)
+    {
+        parent::__construct($files);
+
+        $this->modelAttributesAction = app(ModelAttributesAction::class);
+    }
 
     public function handle(): bool|null
     {
@@ -238,14 +247,14 @@ class ActionMakeCommand extends GeneratorCommand
             ->map([Str::class, 'kebab'])
             ->join("', '");
 
-        $databaseAttributes = collect(app($modelNamespace->value())->getFillable());
+        $databaseAttributes = collect($this->modelAttributesAction->execute(app($modelNamespace->value())->getTable()));
 
         $databaseAttributes = $databaseAttributes->reduce(
             function (string $carry, string $attribute, int $index) use ($databaseAttributes, $modelInstance) {
                 $endOfLine = "\n";
 
                 if ($index === 0) {
-                    $carry .= "'id' => \${$modelInstance}->id,{$endOfLine}";
+                    return "'id' => \${$modelInstance}->id,{$endOfLine}";
                 }
 
                 if ($index === count($databaseAttributes) - 1) {
@@ -311,14 +320,14 @@ class ActionMakeCommand extends GeneratorCommand
             ->map([Str::class, 'kebab'])
             ->join("', '");
 
-        $databaseAttributes = collect(app($modelNamespace->value())->getFillable());
+        $databaseAttributes = collect($this->modelAttributesAction->execute(app($modelNamespace->value())->getTable()));
 
         $databaseAttributes = $databaseAttributes->reduce(
             function (string $carry, string $attribute, int $index) use ($databaseAttributes, $modelInstance, $updatedModelInstance) {
                 $endOfLine = "\n";
 
                 if ($index === 0) {
-                    $carry .= "'id' => \${$modelInstance}->id,{$endOfLine}";
+                    return "'id' => \${$modelInstance}->id,{$endOfLine}";
                 }
 
                 if ($index === count($databaseAttributes) - 1) {
