@@ -1,33 +1,33 @@
-# Generator commands for Laravel applications
+<div align="center">
+	<p><img src="assets/logo.png" alt="Laravel Commands Logo" width="180"></p>
+    <p align="center">
+        <a href="https://packagist.org/packages/ddr/laravel-commands"><img alt="Latest Version" src="https://img.shields.io/static/v1?label=laravel&message=%E2%89%A59.0&color=0078BE&logo=laravel&style=flat-square"></a>
+        <a href="https://packagist.org/packages/ddr/laravel-commands"><img alt="Total Downloads" src="https://img.shields.io/packagist/dt/ddr/laravel-commands"></a>
+        <a href="https://github.com/danie1net0/laravel-commands/actions"><img alt="Tests Passing" src="https://img.shields.io/github/actions/workflow/status/danie1net0/laravel-commands/run-tests.yml?branch=master&label=tests" /></a>
+        <a href="https://packagist.org/packages/ddr/laravel-commands"><img alt="Latest Version" src="https://img.shields.io/packagist/v/ddr/laravel-commands"></a>
+    </p>
+    <a href="https://danie1net0.github.io/laravel-commands-doc/" target="_blank">📚 Documentation</a> 
+</div>
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/ddr/laravel-commands.svg?style=flat-square)](https://packagist.org/packages/ddr/laravel-commands)
-[![Tests](https://img.shields.io/github/actions/workflow/status/ddr/laravel-commands/run-tests.yml?branch=master&label=tests&style=flat-square)](https://github.com/ddr/laravel-commands/actions/workflows/run-tests.yml)
-[![Total Downloads](https://img.shields.io/packagist/dt/ddr/laravel-commands.svg?style=flat-square)](https://packagist.org/packages/ddr/laravel-commands)
+# Laravel Commands
 
-This is where your description should go. Try and limit it to a paragraph or two. Consider adding a small example.
+Laravel Commands is a Laravel package designed to simplify the process of generating resources using the Artisan command line interface. 
 
-## Support us
+>This project is under development.
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/Laravel Commands.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/Laravel Commands)
+## Get Started
 
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
+Please visit the [Get Started](https://danie1net0.github.io/laravel-commands-doc/guide) page for installation and usage guide.
 
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+## Feature
+Current features:
+* Create actions
 
-## Installation
-
-You can install the package via composer:
-
-```bash
-composer require ddr/laravel-commands
-```
-
-## Usage
-
-```php
-$skeleton = new Ddr\LaravelCommands();
-echo $skeleton->echoPhrase('Hello, Ddr!');
-```
+Expected features:
+* Create DTOs
+* Create Livewire CRUD files
+* Add query builders to model
+* Add collection to model
 
 ## Testing
 
@@ -35,22 +35,6 @@ echo $skeleton->echoPhrase('Hello, Ddr!');
 composer test
 ```
 
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](https://github.com/spatie/.github/blob/master/CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
-
-## Credits
-
-- [Daniel Neto](https://github.com/danie1net0)
-- [All Contributors](../../contributors)
 
 ## License
 
