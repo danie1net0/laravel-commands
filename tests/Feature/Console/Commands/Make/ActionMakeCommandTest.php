@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\{File, Schema};
 uses()->group('commands');
 
 beforeEach(function (): void {
-    $this->templatePath = 'tests/Templates/Console/Commands/Make/ActionMakeCommand/';
+    $this->templatePath = 'tests/stubs/Actions/';
 
     File::deleteDirectory(app_path("Actions"));
     File::deleteDirectory(app()->basePath("tests/Feature/Actions"));
