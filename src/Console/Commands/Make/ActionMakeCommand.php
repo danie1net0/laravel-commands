@@ -138,8 +138,7 @@ class ActionMakeCommand extends GeneratorCommand
         $testPath = $this->testPath();
 
         if (File::exists($testPath)) {
-            $this->line("<options=bold,reverse;fg=red> Error</> Test class already exists \n");
-            $this->alert("Test class already exists \n");
+            $this->components->error('Action test already exists');
 
             return;
         }
