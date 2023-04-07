@@ -7,10 +7,8 @@ use Illuminate\Support\Facades\{File, Schema};
 uses()->group('commands');
 
 beforeEach(function (): void {
-    $this->templatePath = 'tests/stubs/Actions/';
-
-    File::deleteDirectory(app_path("Actions"));
-    File::deleteDirectory(app()->basePath("tests/Feature/Actions"));
+    File::deleteDirectory(getPath('Actions'));
+    File::deleteDirectory(getPath('tests/Feature/Actions', true));
 
     Schema::shouldReceive('getColumnListing')
         ->with('users')
@@ -35,31 +33,37 @@ it('should run the command successfully', function (): void {
         ->assertSuccessful();
 });
 
-it('should create action with test', function (string $action, string $test): void {
+it('should create action with test', function (string $action, string $stub): void {
     $this->artisan(ActionMakeCommand::class, ['name' => $action])
         ->assertSuccessful();
 
-    expect(File::exists($actionPath = app_path("Actions/{$action}.php")))->toBeTrue()
-        ->and(File::get($actionPath))->toEqual(File::get("{$this->templatePath}{$action}.php"))
-        ->and(File::exists($testPath = app()->basePath("tests/Feature/Actions/{$action}Test.php")))->toBeTrue()
-        ->and(File::get($testPath))->toEqual(File::get("{$this->templatePath}{$test}.php"));
+    $actionPath = getPath("Actions/{$action}.php");
+    $testPath = getPath("tests/Feature/Actions/{$action}Test.php", true);
+
+    expect($actionPath)->exists()
+        ->and($actionPath)->toEqualFile("tests/stubs/Actions/{$stub}.php")
+        ->and($testPath)->exists()
+        ->and($testPath)->toEqualFile("tests/stubs/Actions/{$stub}Test.php");
 })->with([
-    'only name' => ['SomeAction', 'Tests/SomeActionTest'],
-    'namespace and name' => ['Ddr/SomeAction', 'Ddr/Tests/SomeActionTest'],
+    'with namespace' => ['Ddr/SomeAction', 'ActionWithNamespace'],
+    'without namespace' => ['SomeAction', 'SomeAction'],
 ]);
 
-it("should create action without test when 'without-test' option given", function (string $action): void {
+it("should create action without test when 'without-test' option given", function (string $action, string $stub): void {
     $this->artisan(ActionMakeCommand::class, [
         'name' => $action,
         '--without-test' => true,
     ])->assertSuccessful();
 
-    expect(File::exists($actionPath = app_path("Actions/{$action}.php")))->toBeTrue()
-        ->and(File::get($actionPath))->toEqual(File::get("{$this->templatePath}{$action}.php"))
-        ->and(File::exists(app()->basePath("tests/Feature/Actions/{$action}Test.php")))->toBeFalse();
+    $actionPath = getPath("Actions/{$action}.php");
+    $testPath = getPath("tests/Feature/Actions/{$stub}Test.php", true);
+
+    expect($actionPath)->exists()
+        ->and($actionPath)->toEqualFile("tests/stubs/Actions/{$stub}.php")
+        ->and($testPath)->not->exists();
 })->with([
-    'only name' => ['SomeAction'],
-    'namespace and name' => ['Ddr/SomeAction'],
+    'with namespace' => ['Ddr/SomeAction', 'ActionWithNamespace'],
+    'without namespace' => ['SomeAction', 'SomeAction'],
 ]);
 
 it('should show error when action has already been created', function (string $action): void {
@@ -69,8 +73,8 @@ it('should show error when action has already been created', function (string $a
     $this->artisan(ActionMakeCommand::class, ['name' => $action])
         ->assertExitCode(0);
 })->with([
-    'only name' => ['SomeAction'],
-    'namespace and name' => ['Ddr/SomeAction'],
+    'with namespace' => ['Ddr/SomeAction'],
+    'without namespace' => ['SomeAction'],
 ]);
 
 it('should show error when name not informed', function (): void {
@@ -97,8 +101,11 @@ it('should create a crud action', function (string $type): void {
         '--model' => User::class,
     ])->assertSuccessful();
 
-    expect(File::exists($actionPath = app_path("Actions/{$actionType}Action.php")))->toBeTrue()
-        ->and(File::get($actionPath))->toEqual(File::get("{$this->templatePath}{$actionType}Action.php"))
-        ->and(File::exists($testPath = app()->basePath("tests/Feature/Actions/{$actionType}ActionTest.php")))->toBeTrue()
-        ->and(File::get($testPath))->toEqual(File::get("{$this->templatePath}/Tests/{$actionType}ActionTest.php"));
+    $actionPath = getPath("Actions/{$actionType}Action.php");
+    $testPath = getPath("tests/Feature/Actions/{$actionType}ActionTest.php", true);
+
+    expect($actionPath)->exists()
+        ->and($actionPath)->toEqualFile("tests/stubs/Actions/{$actionType}Action.php")
+        ->and($testPath)->exists()
+        ->and($testPath)->toEqualFile("tests/stubs/Actions/{$actionType}ActionTest.php");
 })->with(['create', 'update', 'delete']);
