@@ -41,12 +41,12 @@ it('should create action with test', function (string $action, string $stub): vo
     $testPath = getPath("tests/Feature/Actions/{$action}Test.php", true);
 
     expect($actionPath)->exists()
-        ->and($actionPath)->toEqualFile("tests/stubs/Actions/{$stub}.php")
+        ->and($actionPath)->toEqualFile("tests/stubs/actions/{$stub}.class.stub")
         ->and($testPath)->exists()
-        ->and($testPath)->toEqualFile("tests/stubs/Actions/{$stub}Test.php");
+        ->and($testPath)->toEqualFile("tests/stubs/actions/{$stub}.test.stub");
 })->with([
-    'with namespace' => ['Ddr/SomeAction', 'ActionWithNamespace'],
-    'without namespace' => ['SomeAction', 'SomeAction'],
+    'with namespace' => ['Ddr/SomeAction', 'action-with-namespace'],
+    'without namespace' => ['SomeAction', 'some-action'],
 ]);
 
 it("should create action without test when 'without-test' option given", function (string $action, string $stub): void {
@@ -56,14 +56,14 @@ it("should create action without test when 'without-test' option given", functio
     ])->assertSuccessful();
 
     $actionPath = getPath("Actions/{$action}.php");
-    $testPath = getPath("tests/Feature/Actions/{$stub}Test.php", true);
+    $testPath = getPath("tests/Feature/Actions/{$stub}.test.stub", true);
 
     expect($actionPath)->exists()
-        ->and($actionPath)->toEqualFile("tests/stubs/Actions/{$stub}.php")
+        ->and($actionPath)->toEqualFile("tests/stubs/actions/{$stub}.class.stub")
         ->and($testPath)->not->exists();
 })->with([
-    'with namespace' => ['Ddr/SomeAction', 'ActionWithNamespace'],
-    'without namespace' => ['SomeAction', 'SomeAction'],
+    'with namespace' => ['Ddr/SomeAction', 'action-with-namespace'],
+    'without namespace' => ['SomeAction', 'some-action'],
 ]);
 
 it('should show error when action has already been created', function (string $action): void {
@@ -105,7 +105,7 @@ it('should create a crud action', function (string $type): void {
     $testPath = getPath("tests/Feature/Actions/{$actionType}ActionTest.php", true);
 
     expect($actionPath)->exists()
-        ->and($actionPath)->toEqualFile("tests/stubs/Actions/{$actionType}Action.php")
+        ->and($actionPath)->toEqualFile("tests/stubs/actions/{$type}-action.class.stub")
         ->and($testPath)->exists()
-        ->and($testPath)->toEqualFile("tests/stubs/Actions/{$actionType}ActionTest.php");
+        ->and($testPath)->toEqualFile("tests/stubs/actions/{$type}-action.test.stub");
 })->with(['create', 'update', 'delete']);
