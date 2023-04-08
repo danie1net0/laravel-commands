@@ -51,10 +51,10 @@ class ActionMakeCommand extends GeneratorCommand
     protected function getStub(): string
     {
         $stubPath = match (true) {
-            $this->option('create') => 'views/stubs/actions/action.crud-creation.stub',
-            $this->option('update') => 'views/stubs/actions/action.crud-editing.stub',
-            $this->option('delete') => 'views/stubs/actions/action.crud-deleting.stub',
-            default => 'views/stubs/actions/action.stub'
+            $this->option('create') => 'resources/views/stubs/actions/action.crud-creation.stub',
+            $this->option('update') => 'resources/views/stubs/actions/action.crud-editing.stub',
+            $this->option('delete') => 'resources/views/stubs/actions/action.crud-deleting.stub',
+            default => 'resources/views/stubs/actions/action.stub'
         };
 
         return __DIR__ . "/../../../../{$stubPath}";
@@ -180,7 +180,7 @@ class ActionMakeCommand extends GeneratorCommand
 
     private function createDefaultTest(): string
     {
-        $testStub = File::get(__DIR__ . '/../../../../views/stubs/actions/action.test.stub');
+        $testStub = File::get(__DIR__ . '/../../../../resources/views/stubs/actions/action.test.stub');
 
         $search = [
             '{{ actionNamespace }}',
@@ -205,7 +205,7 @@ class ActionMakeCommand extends GeneratorCommand
 
     private function createCreationTest(): string
     {
-        $testStub = File::get(__DIR__ . '/../../../../views/stubs/actions/action.crud-creation.test.stub');
+        $testStub = File::get(__DIR__ . '/../../../../resources/views/stubs/actions/action.crud-creation.test.stub');
 
         $search = [
             '{{ actionNamespace }}',
@@ -275,7 +275,7 @@ class ActionMakeCommand extends GeneratorCommand
 
     private function createEditingTest(): string
     {
-        $testStub = File::get(__DIR__ . '/../../../../views/stubs/actions/action.crud-editing.test.stub');
+        $testStub = File::get(__DIR__ . '/../../../../resources/views/stubs/actions/action.crud-editing.test.stub');
 
         $search = [
             '{{ actionNamespace }}',
@@ -349,7 +349,7 @@ class ActionMakeCommand extends GeneratorCommand
 
     private function createDeletingTest(): string
     {
-        $testStub = File::get(__DIR__ . '/../../../../views/stubs/actions/action.crud-deleting.test.stub');
+        $testStub = File::get(__DIR__ . '/../../../../resources/views/stubs/actions/action.crud-deleting.test.stub');
 
         $search = [
             '{{ actionNamespace }}',
