@@ -19,7 +19,11 @@ class LaravelCommandsServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->publishes([
-            __DIR__ . '/../../resources' => resource_path('views/vendor/laravel-commands'),
+            __DIR__ . '/../../resources/views' => resource_path('views/vendor/laravel-commands'),
         ], 'laravel-commands-stubs');
+
+        $this->publishes([
+            __DIR__ . '/../../resources/config/laravel-commands.php' => config_path('laravel-commands.php'),
+        ], 'laravel-commands-config');
     }
 }
