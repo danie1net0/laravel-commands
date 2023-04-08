@@ -168,11 +168,6 @@ class ActionMakeCommand extends GeneratorCommand
         }
     }
 
-    private function relativeTestPath(): string
-    {
-        return str($this->testPath())->replaceFirst(base_path() . '/', '');
-    }
-
     private function replaceTest(): string
     {
         return match (true) {
@@ -185,7 +180,7 @@ class ActionMakeCommand extends GeneratorCommand
 
     private function createDefaultTest(): string
     {
-        $testStub = File::get(__DIR__ . '/../../../../views/stubs/actions/tests/action.test.stub');
+        $testStub = File::get(__DIR__ . '/../../../../views/stubs/actions/action.test.stub');
 
         $search = [
             '{{ actionNamespace }}',
@@ -210,7 +205,7 @@ class ActionMakeCommand extends GeneratorCommand
 
     private function createCreationTest(): string
     {
-        $testStub = File::get(__DIR__ . '/../../../../views/stubs/actions/tests/action.crud-creation.test.stub');
+        $testStub = File::get(__DIR__ . '/../../../../views/stubs/actions/action.crud-creation.test.stub');
 
         $search = [
             '{{ actionNamespace }}',
@@ -280,7 +275,7 @@ class ActionMakeCommand extends GeneratorCommand
 
     private function createEditingTest(): string
     {
-        $testStub = File::get(__DIR__ . '/../../../../views/stubs/actions/tests/action.crud-editing.test.stub');
+        $testStub = File::get(__DIR__ . '/../../../../views/stubs/actions/action.crud-editing.test.stub');
 
         $search = [
             '{{ actionNamespace }}',
@@ -354,7 +349,7 @@ class ActionMakeCommand extends GeneratorCommand
 
     private function createDeletingTest(): string
     {
-        $testStub = File::get(__DIR__ . '/../../../../views/stubs/actions/tests/action.crud-deleting.test.stub');
+        $testStub = File::get(__DIR__ . '/../../../../views/stubs/actions/action.crud-deleting.test.stub');
 
         $search = [
             '{{ actionNamespace }}',
