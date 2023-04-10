@@ -3,15 +3,19 @@
 namespace Ddr\LaravelCommands\Providers;
 
 use Ddr\LaravelCommands\Console\Commands\Make\ActionMakeCommand;
+use Ddr\LaravelCommands\Console\Commands\Make\LivewireCrud\MakeListCommand;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelCommandsServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
+        $this->mergeConfigFrom(__DIR__ . '/../../resources/config/laravel-commands.php', 'laravel-commands');
+
         if ($this->app->runningInConsole()) {
             $this->commands([
                 ActionMakeCommand::class,
+                MakeListCommand::class,
             ]);
         }
     }

@@ -1,0 +1,24 @@
+<?php
+
+use App\Http\Livewire\Users\ListUsers;
+use Ddr\LaravelCommands\Tests\Models\User;
+use Livewire\Livewire;
+
+uses()->group('livewire', 'users', );
+
+it('should show the list page', function () {
+    Livewire::test(ListUsers::class)
+        ->assertSuccessful();
+});
+
+it('should list data', function () {
+    $users = User::factory()
+        ->count(2)
+        ->create();
+
+    Livewire::test(ListUsers::class)
+        ->assertOk()
+        ->assertSee($users->pluck('name')->toArray())
+        ->assertSee(__('Previous'))
+        ->assertSee(__('Next'));
+});

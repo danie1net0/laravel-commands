@@ -1,0 +1,25 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ modelNamespace }};
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Livewire\Component;
+
+class {{ component }} extends Component
+{
+    use AuthorizesRequests;
+
+    public function booted(): void
+    {
+        $this->authorize('viewAny');
+    }
+
+    public function render(): View
+    {
+        return view('{{ view }}', [
+            '{{ pluralResourceName }}' = {{ modelName }}::query()->get(),
+        ]);
+    }
+}

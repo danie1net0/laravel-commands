@@ -1,0 +1,17 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ modelNamespace }};
+use Illuminate\Contracts\View\View;
+use Livewire\Component;
+
+class {{ component }} extends Component
+{
+    public function render(): View
+    {
+        return view('{{ view }}', [
+            'users' = {{ modelName }}::query()->get(),
+        ]);
+    }
+}

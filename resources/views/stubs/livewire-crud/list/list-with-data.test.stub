@@ -1,0 +1,24 @@
+<?php
+
+use {{ componentNamespace }};
+use {{ modelNamespace }};
+use Livewire\Livewire;
+
+uses()->group('livewire', {{ groups }});
+
+it('should show the list page', function () {
+    Livewire::test({{ component }}::class)
+        ->assertSuccessful();
+});
+
+it('should list data', function () {
+    ${{ pluralResourceName }} = {{ modelName }}::factory()
+        ->count(2)
+        ->create();
+
+    Livewire::test({{ component }}::class)
+        ->assertOk()
+        ->assertSee(${{ pluralResourceName }}->pluck('name')->toArray())
+        ->assertSee(__('Previous'))
+        ->assertSee(__('Next'));
+});

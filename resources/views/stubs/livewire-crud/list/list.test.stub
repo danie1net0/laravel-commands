@@ -1,0 +1,11 @@
+<?php
+
+use {{ componentNamespace }};
+use Livewire\Livewire;
+
+uses()->group('livewire', {{ groups }});
+
+it('should show the list page', function () {
+    Livewire::test({{ component }}::class)
+        ->assertSuccessful();
+});

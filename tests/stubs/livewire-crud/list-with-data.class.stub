@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Http\Livewire\Users;
+
+use Ddr\LaravelCommands\Tests\Models\User;
+use Illuminate\Contracts\View\View;
+use Livewire\Component;
+
+class ListUsers extends Component
+{
+    public function render(): View
+    {
+        return view('livewire.users.list-users', [
+            'users' = User::query()->get(),
+        ]);
+    }
+}

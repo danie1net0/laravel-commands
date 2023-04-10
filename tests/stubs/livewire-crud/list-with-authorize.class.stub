@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Http\Livewire\Users;
+
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Livewire\Component;
+
+class ListUsers extends Component
+{
+    use AuthorizesRequests;
+
+    public function booted(): void
+    {
+        $this->authorize('viewAny');
+    }
+
+    public function render(): View
+    {
+        return view('livewire.users.list-users');
+    }
+}

@@ -1,0 +1,32 @@
+<?php
+
+use {{ componentNamespace }};
+use App\Models\User;
+use Livewire\Livewire;
+
+uses()->group('livewire', {{ groups }});
+
+it('should show the list page', function () {
+    /** @var User $user */
+    $user = User::factory()
+        ->authorizedUser() // implement this method in factory
+        ->create();
+
+    Livewire::actingAs($user)
+        ->test({{ component }}::class)
+        ->assertSuccessful();
+});
+
+it('should ensure that an unauthenticated user cannot see the list page', function () {
+   Livewire::test({{ component }}::class)
+       ->assertForbidden();
+});
+
+it('should ensure that an unauthorized user cannot see the list page', function () {
+    /** @var User $user */
+    $user = User::factory()->create();
+
+    Livewire::actingAs($user)
+        ->test({{ component }}::class)
+        ->assertForbidden();
+});
